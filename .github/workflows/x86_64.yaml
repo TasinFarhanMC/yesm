@@ -21,7 +21,10 @@ jobs:
           make all
 
       - name: Run benchmarks
-        run: ./x86_64/benchmark.sh
+        run: |
+          ./x86_64/benchmark.sh
+          sed -i '1iNotice: Benchmarks are generated on GitHub Actions using GitHub Actions runners (x86_64 Linux)' ./x86_64/benchmark.txt
+          sed -i '1iNotice: Benchmarks are generated on GitHub Actions using GitHub Actions runners (x86_64 Linux)' ./x86_64/benchmark_verbose.txt
 
       - name: Commit benchmark log
         run: |
