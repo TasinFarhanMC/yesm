@@ -1,10 +1,8 @@
-.set READ, 0
 .set WRITE, 1
 .set BRK, 12
 .set SIG_ACTION, 13
 .set EXIT, 60
 
-.set STDIN, 0
 .set STDOUT, 1
 
 .set SIGINT, 2
@@ -94,11 +92,11 @@ strlen_do:
 	and %r9, %rax
 	jz  strlen
 
-	bsf  %rax, %rax
-	shr  $3, %rax
-	add  %rax, %rbx
-	mov  %rbx, -8(%r13, %rcx, 8)
-	loop arg_loop
+	tzcnt %rax, %rax
+	shr   $3, %rax
+	add   %rax, %rbx
+	mov   %rbx, -8(%r13, %rcx, 8)
+	loop  arg_loop
 
 	add   %rsi, %rbx
 	mov   %rbx, %r15 # line size
@@ -167,12 +165,9 @@ loop:
 	jmp loop
 
 default:
-	mov $WRITE, %rax
-	mov $STDOUT, %rdi
-	mov $default_yes, %rsi
-	mov $PAGE, %rdx
-	syscall
-	jmp default
+	mov $default_yes, %r14
+	mov $PAGE, %rbx
+	jmp loop
 
 exit:
 	mov $EXIT, %rax

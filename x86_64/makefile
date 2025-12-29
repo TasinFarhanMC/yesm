@@ -1,26 +1,53 @@
-ASM      = as
-ASM_FLAGS = -g
-SRC_DIR  = src
-BUILD_DIR = build
-LINK     = ld
-LINK_FLAGS =
+ASM := as
+LD  := ld
 
-SRCS     := $(shell find $(SRC_DIR) -name '*.s')
-OBJS     := $(patsubst $(SRC_DIR)/%.s,$(BUILD_DIR)/%.o,$(SRCS))
+SRC_DIR   := src
+BUILD_DIR := build
 
-all: $(BUILD_DIR)/yesm
+MODE ?= release
 
-$(BUILD_DIR)/%:
+ifeq ($(MODE),debug)
+    ASM_FLAGS := -g
+    LD_FLAGS  :=
+else
+    ASM_FLAGS :=
+    LD_FLAGS  := -s --gc-sections --build-id=none
+endif
+
+SRCS := $(wildcard $(SRC_DIR)/*.s)
+
+YESM_SRC := $(SRC_DIR)/yesm.s
+YESM_BIN := $(BUILD_DIR)/yesm
+
+OTHER_SRCS := $(filter-out $(YESM_SRC),$(SRCS))
+OTHER_BINS := $(patsubst $(SRC_DIR)/%.s,$(BUILD_DIR)/yesm_%,$(OTHER_SRCS))
+
+yesm: $(YESM_BIN)
+extras: $(OTHER_BINS)
+
+$(BUILD_DIR):
 	mkdir -p $@
 
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.s
-	@mkdir -p $(dir $@)
-	$(ASM) $(ASM_FLAGS) -o $@ $<
+$(YESM_BIN): $(YESM_SRC) | $(BUILD_DIR)
+	$(ASM) $(ASM_FLAGS) -o $@.o $<
+	$(LD)  $(LD_FLAGS)  -o $@   $@.o
 
-$(BUILD_DIR)/yesm: $(OBJS)
-	$(LINK) $(LINK_FLAGS) -o $@ $^
+$(BUILD_DIR)/yesm_%: $(SRC_DIR)/%.s | $(BUILD_DIR)
+	$(ASM) $(ASM_FLAGS) -o $@.o $<
+	$(LD)  $(LD_FLAGS)  -o $@   $@.o
+
+%: $(BUILD_DIR)/yesm_%
+	@:
+
+debug:
+	$(MAKE) MODE=debug
+
+release:
+	$(MAKE) MODE=release
 
 clean:
 	rm -rf $(BUILD_DIR)
 
-.PHONY: all clean
+all: yesm extras
+
+.PHONY: all clean debug release extras yesm
