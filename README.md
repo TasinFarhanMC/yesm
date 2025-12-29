@@ -5,14 +5,14 @@
 ## Benchmarks
 
 > **Note:** The benchmarks are generated using GitHub Actions runners (x86_64 Linux) with the latest commit of **yesm**.
+
 Benchmark for the x86_64 build of **yesm**:  
 - [View summary (raw)](https://raw.githubusercontent.com/TasinFarhanMC/yesm/benchmarks/x86_64/benchmark.txt)  
 - [View summary on GitHub](https://github.com/TasinFarhanMC/yesm/blob/benchmarks/x86_64/benchmark.txt)
 
 For full verbose results, see:  
 - [View verbose (raw)](https://raw.githubusercontent.com/TasinFarhanMC/yesm/benchmarks/x86_64/benchmark_verbose.txt)  
-- [View verbose on GitHub](https://github.com/TasinFarhanMC/yesm/blob/benchmarks/x86_64/benchmark_verbose.txt)
-## Build
+- [View verbose on GitHub](https://github.com/TasinFarhanMC/yesm/blob/benchmarks/x86_64/benchmark_verbose.txt)## Build
 
 Clone and build non SIMD version:
 
@@ -53,4 +53,3 @@ To run benchmarks, cd to the architecture directory (e.g., `./x86_64`):
 
 * **Summary results** will be saved in `./benchmarks.txt`.
 * **Verbose results** will be saved in `./benchmarks_verbose.txt`.
-
