@@ -31,7 +31,7 @@ jobs:
           sed -i '1iNotice: Benchmarks are generated on GitHub Actions using GitHub Actions runners (x86_64 Linux)' ./x86_64/benchmark_verbose.txt
 
       - name: Upload benchmark logs
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: benchmarks
           path: |
