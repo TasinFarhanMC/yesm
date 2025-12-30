@@ -1,2 +1,4 @@
 build/
 *.txt
+*.out
+*.core

@@ -1,0 +1,10 @@
+[default_config]
+version = "0.10.1"
+assembler = "gas"
+instruction_set = "arm64"
+
+[default_config.opts]
+compiler = "aarch64-linux-gnu-as"
+compile_flags_txt = []
+diagnostics = true
+default_diagnostics = false

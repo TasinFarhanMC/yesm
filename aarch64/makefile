@@ -2,8 +2,8 @@ ASM := as
 LD  := ld
 
 ifeq ($(CROSS),1)
-    ASM := x86_64-linux-gnu-as
-    LD  := x86_64-linux-gnu-ld
+    ASM := aarch64-linux-gnu-as
+    LD  := aarch64-linux-gnu-ld
 endif
 
 SRC_DIR   := src
