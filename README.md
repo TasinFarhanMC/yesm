@@ -8,12 +8,9 @@
 > **Note:** The benchmarks are generated using GitHub Actions runners (x86_64 Linux) with the latest commit of **yesm**.
 
 Benchmark for the x86_64 build of **yesm**:  
-- [View summary (raw)](https://raw.githubusercontent.com/TasinFarhanMC/yesm/benchmarks/x86_64/benchmark.txt)  
-- [View summary on GitHub](https://github.com/TasinFarhanMC/yesm/blob/benchmarks/x86_64/benchmark.txt)
-
-For full verbose results, see:  
-- [View verbose (raw)](https://raw.githubusercontent.com/TasinFarhanMC/yesm/benchmarks/x86_64/benchmark_verbose.txt)  
-- [View verbose on GitHub](https://github.com/TasinFarhanMC/yesm/blob/benchmarks/x86_64/benchmark_verbose.txt)
+- [Benchmarks.zip](https://nightly.link/TasinFarhanMC/yesm/workflows/x86_64.yaml/main/benchmarks.zip)
+- [View summary (raw)](https://tasinfarhanmc.github.io/zipviwer?zip=https://nightly.link/TasinFarhanMC/yesm/workflows/x86_64.yaml/main/benchmarks.zip&path=benchmark.txt)  
+- [View verbose (raw)](https://tasinfarhanmc.github.io/zipviwer?zip=https://nightly.link/TasinFarhanMC/yesm/workflows/x86_64.yaml/main/benchmarks.zip&path=benchmark_verbose.txt)  
 
 ## Build
 
